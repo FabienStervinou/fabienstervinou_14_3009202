@@ -23,6 +23,26 @@ function Form () {
     e.preventDefault();
     const employee = {firstName, lastName, dateOfBirth, startDate, street, city, stateLocation, zipCode, department};
     dispatch(addEmployee(employee));
+
+    //TODO: verify if the employee is corectly added
+    resetForm();
+  };
+
+  const resetForm = () => {
+    const allInput = document.querySelectorAll('input');
+    const allSelect = document.querySelectorAll('select');
+
+    for (let i = 0; i < allInput.length; i++) {
+      const input = allInput[i];
+      if (input.type !== 'submit') {
+        input.value = '';
+      }
+    }
+
+    for (let i = 0; i < allSelect.length; i++) {
+      const select = allSelect[i];
+      select.selectedIndex = null;
+    }
   };
 
   return (
