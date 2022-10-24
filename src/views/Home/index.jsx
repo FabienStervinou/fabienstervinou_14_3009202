@@ -1,15 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Form from '../../components/Form/index.jsx';
+import Header from '../../layout/Header/index';
 
 function Home () {
   return ( 
     <>
-      <header>
-        <h1>HRnet</h1>
-      </header>
+      <Header />
       <main className="home">
-        <NavLink to='/employees'>View Current Employees</NavLink>
         <h2>Create employee</h2>
         <Form />
       </main>
