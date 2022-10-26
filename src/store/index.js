@@ -12,6 +12,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import employeesSlice from '../features/employees/employeesSlice.js';
+import entriesSlice from '../features/entries/entriesSlice.js';
 
 const rootPersistConfig = {
   key: 'root',
@@ -23,8 +24,14 @@ const employeesPersistConfig = {
   storage
 };
 
+const entriesPersistConfig = {
+  key: 'entries',
+  storage
+};
+
 const rootReducer = combineReducers({
   employees: persistReducer(employeesPersistConfig, employeesSlice),
+  entries: persistReducer(entriesPersistConfig, entriesSlice),
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
@@ -42,3 +49,4 @@ export const store = configureStore({
 );
 
 export const persistor = persistStore(store);
+ 
