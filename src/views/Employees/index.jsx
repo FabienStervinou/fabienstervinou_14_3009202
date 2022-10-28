@@ -10,6 +10,12 @@ function Employees () {
   const employees = useSelector((state) => state.employees.employeesQuery);
   const entriesParams = useSelector((state) => state.entries.entries);
   const [searchTerm, setSearchTerm] = useState('');
+
+  // pagination logic
+  const totalEmployees = employees.length;
+  const totalPagination = Math.ceil(totalEmployees / entriesParams);
+  let actualPagination = 0;
+  const employeesVisible = employees.slice(0, entriesParams);
   
   const handleChange = (e) => {
     const query = e.target.value;
@@ -20,10 +26,6 @@ function Employees () {
       dispatch(getEmployeesByQuery(queryRequest));
     }
   };
-
-  if (entriesParams) {
-    employees.slice(0, entriesParams);
-  }
 
   return ( 
     <>
@@ -61,7 +63,7 @@ function Employees () {
               <th>Zip Code</th>
             </tr>
             {
-              employees.map((employee, i) => {
+              employeesVisible.map((employee, i) => {
                 return <tr key={i}>
                   <td>{employee.firstName}</td>
                   <td>{employee.lastName}</td>
@@ -77,6 +79,12 @@ function Employees () {
             }
           </tbody>
         </table>
+
+        <div className="pagination">
+          <br /><br />
+          <span>Actual page {actualPagination}</span><br />
+          <span>Pages total {totalPagination}</span>
+        </div>
 
       </main>
     </>
