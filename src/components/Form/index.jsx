@@ -1,3 +1,4 @@
+import './index.scss';
 import React, { useState } from 'react';
 import Input from './Input/index.jsx';
 import Fieldset from './ Fieldset/index.jsx';
@@ -49,8 +50,8 @@ function Form () {
     <form onSubmit={handleSubmit}>
       <Input type="text" label="First Name" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value) } />
       <Input type="text" label="Last Name" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value) } />
-      <Input type="date" label="Date of Birth" id="dateOfBirth" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value) } />
-      <Input type="date" label="Start Date" id="startDate" value={startDate} onChange={(e) => setStartDate(e.target.value) } />
+      <Input type="date" label="Date of Birth" id="dateOfBirth" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value) } pattern="\d{4}-\d{2}-\d{2}"/>
+      <Input type="date" label="Start Date" id="startDate" value={startDate} onChange={(e) => setStartDate(e.target.value) } pattern="\d{4}-\d{2}-\d{2}"/>
       <Fieldset legend="Adresse">
         <Input type="text" label="Street" id="street" value={street} onChange={(e) => setStreet(e.target.value) } />
         <Input type="text" label="City" id="city" value={city} onChange={(e) => setCity(e.target.value) } />
@@ -59,7 +60,7 @@ function Form () {
           name="State" 
           label="State" 
           id="stateLocation" 
-          value={data.states[0]} 
+          value={stateLocation}
           onChange={(e) => setStateLocation(e.target.value)} 
         />
         <Input type="number" label="Zip Code" id="zipCode" value={zipCode} onChange={(e) => setZipCode(e.target.value) } />
