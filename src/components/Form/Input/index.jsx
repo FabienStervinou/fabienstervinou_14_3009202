@@ -3,9 +3,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Input (props) {
+  const isEmpty = !!props.value.length > 0;
+
   return (
-    <div className='input'>
-      <label className='inputLabel' htmlFor={props.id}>{props.label}</label>
+    <div className={
+      !isEmpty
+        ? `input ${props.type}`
+        : `input isNotEmpty ${props.type}`
+    }
+    >
+      <label className='inputLabel' htmlFor={props.id}>
+        <div className="inputLabel-text">
+          {props.label}
+        </div>
+      </label>
       <input 
         id={props.id}
         className='inputElement'
