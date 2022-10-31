@@ -1,9 +1,10 @@
 import './style.scss';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../layout/Header/index';
 import Entries from '../../components/Entries/index';
 import { getEmployeesByQuery } from '../../features/employees/employeesSlice';
+import Pagination from '../../components/Pagination';
 
 function Employees () {
   const dispatch = useDispatch();
@@ -13,9 +14,13 @@ function Employees () {
 
   // pagination logic
   const totalEmployees = employees.length;
-  const totalPagination = Math.ceil(totalEmployees / entriesParams);
-  let actualPagination = 0;
-  const employeesVisible = employees.slice(0, entriesParams);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * entriesParams;
+    const lastPageIndex = firstPageIndex + entriesParams;
+    return employees.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, entriesParams, employees]);
   
   const handleChange = (e) => {
     const query = e.target.value;
@@ -63,7 +68,7 @@ function Employees () {
               <th>Zip Code</th>
             </tr>
             {
-              employeesVisible.map((employee, i) => {
+              currentTableData.map((employee, i) => {
                 return <tr key={i}>
                   <td>{employee.firstName}</td>
                   <td>{employee.lastName}</td>
@@ -80,11 +85,13 @@ function Employees () {
           </tbody>
         </table>
 
-        <div className="pagination">
-          <br /><br />
-          <span>Actual page {actualPagination}</span><br />
-          <span>Pages total {totalPagination}</span>
-        </div>
+        <Pagination
+          className="paginationbar"
+          currentPage={currentPage}
+          totalCount={totalEmployees}
+          pageSize={entriesParams}
+          onPageChange={page => setCurrentPage(page)}
+        />
 
       </main>
     </>
