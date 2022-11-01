@@ -36,8 +36,17 @@ function Employees () {
   const toggleOrder = (e) => {
     const targetClass = e.target.classList;
     const orderName = e.target.dataset.name;
+    const allColumn = document.querySelectorAll('th');
     const isActive = targetClass.contains('isActive');
     let order = '';
+
+    for (let i = 0; i < allColumn.length; i++) {
+      const column = allColumn[i];
+
+      if (column.classList.contains('isActive') && column.dataset.name !== orderName) {
+        column.classList.remove('isActive');
+      }
+    }
 
     if (!isActive) {
       targetClass.add('isActive');
@@ -80,7 +89,7 @@ function Employees () {
         <table>
           <tbody>
             <tr>
-              <th onClick={toggleOrder} data-name='firstName'>FirstName <Arrow /></th>
+              <th onClick={toggleOrder} data-name='firstName' className='isActive'>FirstName <Arrow /></th>
               <th onClick={toggleOrder} data-name='lastName'>LastName <Arrow /></th>
               <th onClick={toggleOrder} data-name='startDate'>Start Date <Arrow /></th>
               <th onClick={toggleOrder} data-name='department'>Department <Arrow /></th>
