@@ -3,8 +3,9 @@ import React, { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../layout/Header/index';
 import Entries from '../../components/Entries/index';
-import { getEmployeesByQuery } from '../../features/employees/employeesSlice';
+import { getEmployeesByQuery, orderEmployeeByColumn } from '../../features/employees/employeesSlice';
 import Pagination from '../../components/Pagination';
+import { Arrow } from '../../assets/svgs/arrow.jsx';
 
 function Employees () {
   const dispatch = useDispatch();
@@ -29,6 +30,28 @@ function Employees () {
       const queryRequest = query.trim();
       
       dispatch(getEmployeesByQuery(queryRequest));
+    }
+  };
+
+  const toggleOrder = (e) => {
+    const targetClass = e.target.classList;
+    const orderName = e.target.dataset.name;
+    const isActive = targetClass.contains('isActive');
+    let order = '';
+
+    if (!isActive) {
+      targetClass.add('isActive');
+      order = 'asc';
+      dispatch(orderEmployeeByColumn({orderName, order}));
+
+    } else if (isActive && !targetClass.contains('down')) {
+      targetClass.add('down');
+      order = 'desc';
+      dispatch(orderEmployeeByColumn({orderName, order}));
+
+    } else if (isActive && targetClass.contains('down')) {
+      targetClass.remove('isActive');
+      targetClass.remove('down');
     }
   };
 
@@ -57,15 +80,15 @@ function Employees () {
         <table>
           <tbody>
             <tr>
-              <th>FirstName</th>
-              <th>LastName</th>
-              <th>Start Date</th>
-              <th>Department</th>
-              <th>Date of Birth</th>
-              <th>Street</th>
-              <th>City</th>
-              <th>State</th>
-              <th>Zip Code</th>
+              <th onClick={toggleOrder} data-name='firstName'>FirstName <Arrow /></th>
+              <th onClick={toggleOrder} data-name='lastName'>LastName <Arrow /></th>
+              <th onClick={toggleOrder} data-name='startDate'>Start Date <Arrow /></th>
+              <th onClick={toggleOrder} data-name='department'>Department <Arrow /></th>
+              <th onClick={toggleOrder} data-name='dateOfBirth'>Date of Birth <Arrow /></th>
+              <th onClick={toggleOrder} data-name='street'>Street <Arrow /></th>
+              <th onClick={toggleOrder} data-name='city'>City <Arrow /></th>
+              <th onClick={toggleOrder} data-name='stateLocation'>State <Arrow /></th>
+              <th onClick={toggleOrder} data-name='zipCode'>Zip Code <Arrow /></th>
             </tr>
             {
               currentTableData.map((employee, i) => {
