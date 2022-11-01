@@ -7,7 +7,8 @@ const employeesSlice = createSlice({
   name: 'employees',
   initialState: {
     employees: mokedData,
-    employeesQuery: mokedData
+    employeesQuery: mokedData,
+    query: ''
   },
   reducers: {
     addEmployee: (state, action) => {
@@ -15,6 +16,9 @@ const employeesSlice = createSlice({
     },
     getEmployeesByQuery: (state, action) => {
       const q = action.payload.toLowerCase();
+      if (q.length <= 1) { state.employeesQuery = state.employees; return;}
+      const userPressDeleteKey = q.length < state.query.length;
+      state.query = q;
 
       if (q.split(' ').length === 1) {
         const response = state.employees.filter(value => {
@@ -34,8 +38,7 @@ const employeesSlice = createSlice({
 
         for (let i = 0; i < qArray.length; i++) {
           const qElement = qArray[i];
-          const stateQuery = state.employeesQuery ? state.employeesQuery : state.employees;
-
+          const stateQuery = userPressDeleteKey ? state.employees : state.employeesQuery;
           const response = stateQuery.filter(value => {
             return value.firstName.toLowerCase().match(new RegExp(qElement, 'g')) ||
             value.lastName.toLowerCase().match(new RegExp(qElement, 'g')) ||
