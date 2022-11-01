@@ -77,9 +77,44 @@ const employeesSlice = createSlice({
 
         state.employeesQuery = filteredArr;
       }
+    },
+    orderEmployeeByColumn: (state, action) => {
+      const orderName = action.payload.orderName;
+      const order = action.payload.order;
+      let response;
+
+      if (orderName === 'startDate' || orderName === 'dateOfBirth') {
+        if (order === 'asc') {
+          response = [...state.employeesQuery].sort((a,b) => {
+            let aa = a[orderName].split('/').reverse().join();
+            let bb = b[orderName].split('/').reverse().join();
+            return aa < bb ? -1 : (aa > bb ? 1 : 0);
+          });
+        } else if (order === 'desc') {
+          response = [...state.employeesQuery].sort((a,b) => {
+            let aa = a[orderName].split('/').reverse().join();
+            let bb = b[orderName].split('/').reverse().join();
+            return aa > bb ? -1 : (aa < bb ? 1 : 0);
+          });
+        }
+      } else {
+        if (order === 'asc') {
+          response = [...state.employeesQuery].sort((a, b) =>
+            a[orderName] < b[orderName] ? -1 : 1
+          );
+        } else if (order === 'desc') {
+          response = [...state.employeesQuery].sort((a, b) =>
+            a[orderName] > b[orderName] ? -1 : 1
+          );
+        } else {
+          return;
+        }
+      }
+
+      state.employeesQuery = response;
     }
   }
 });
 
-export const { addEmployee, getEmployeesByQuery } = employeesSlice.actions;
+export const { addEmployee, getEmployeesByQuery, orderEmployeeByColumn } = employeesSlice.actions;
 export default employeesSlice.reducer;
