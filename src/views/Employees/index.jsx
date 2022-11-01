@@ -25,7 +25,7 @@ function Employees () {
   const handleChange = (e) => {
     const query = e.target.value;
     setSearchTerm(query);
-    if (query.length >= 2) {
+    if (query.length >= 1) {
       const queryRequest = query.trim();
       
       dispatch(getEmployeesByQuery(queryRequest));
