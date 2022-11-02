@@ -1,0 +1,73 @@
+@import '../../../assets/style/variables.scss';
+
+.input {
+  position: relative;
+  margin-top: 15px;
+  width: 100%;
+
+  &:focus-within,
+  &.isNotEmpty,
+  &.date {
+    outline: none;
+    border-color: $primary-color;
+
+    .inputLabel,
+    .inputLabel-text {
+      color: black;
+      background-color: transparent;
+      outline: none;
+    }
+    
+    .inputLabel-text {
+      background-color: red;
+      transform: translate(0, -24px);
+      background-color: $background-form;
+    }
+  }
+
+  &Label{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 2px solid transparent;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding: 0 1.2rem;
+
+    &-text {
+      font-size: 14px;
+      padding: 0 0.5rem;
+      background-color: transparent;
+      color: black;
+      transform: translate(0);
+      pointer-events: none;
+      transition: transform 0.15s ease-out, font-size 0.15s ease-out, background-color 0.2s ease-out, color 0.15s ease-out;
+    }
+  }
+
+  &Element{
+    height: 3rem;
+    width: 100%;
+    padding: 0 1.2rem;
+    border: 2px solid black;
+    border-radius: 6px;
+    background-color: transparent;
+
+    // TODO: Make the label at top, when value is not empty
+    &:not([value=""]) {
+      .inputLabel-text {
+        transform: translate(0, -24px);
+        background-color: $background-form;
+      }
+    }
+  }
+
+  &Error{
+
+  }
+}
