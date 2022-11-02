@@ -1,0 +1,20 @@
+@import '../../../assets/style/variables.scss';
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 50px 0 30px;
+  width: 100%;
+  border: 2px solid $primary-color;
+  border-radius: 100px;
+  padding: 60px;
+
+  legend {
+    position: absolute;
+    top: 30px;
+    font-size: 18px;
+  }
+}
