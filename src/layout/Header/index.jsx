@@ -8,11 +8,19 @@ function Header () {
 
   return (
     <header className='header'>
-      <h1 className='headerTitle'>HRnet</h1>
+      <h1 className='headerTitle'>
+        <NavLink className='headerLogo' to='/'>
+          HRnet
+        </NavLink>
+      </h1>
       {
         isActualLocationHome 
-          ? <NavLink className='headerLink' to='/employees'>View Current Employees</NavLink>
-          : <NavLink className='headerLink' to='/'>Home</NavLink>
+          ? <NavLink className='headerLink' to='/employees'>
+            View Current Employees
+          </NavLink>
+          : <NavLink className='headerLink' to='/'>
+            Home
+          </NavLink>
       }
     </header>
   );

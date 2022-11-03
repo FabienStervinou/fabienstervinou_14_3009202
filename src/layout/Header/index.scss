@@ -5,7 +5,11 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 0;
-  color: $primary-color;
+  
+  &Logo {
+    text-decoration: none;
+    color: $primary-color;
+  }
 
   &Title {
     font-size: 30px;
