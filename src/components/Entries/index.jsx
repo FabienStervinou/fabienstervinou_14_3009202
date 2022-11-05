@@ -2,23 +2,24 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import Select from '../Form/Select/index.jsx';
+import SelectForm from '../Form/SelectForm/index.jsx';
 import { changeEntries } from '../../features/entries/entriesSlice.js';
 
 function Entries () {
   const dispatch = useDispatch();
   const entriesArray = [10, 25, 50, 100];
-  const [entries, setEntries] = useState();
+  const [entries, setEntries] = useState(10);
 
   const handleChange = (e) => {
-    const paylaod = parseInt(e.target.value);
-    setEntries(entries);
+    const newValue = parseInt(e.target.value);
+    const paylaod = parseInt(newValue);
+    setEntries(newValue);
     dispatch(changeEntries(paylaod));
   };
   
   return (
     <div className='inputEntries'>
-      <Select 
+      <SelectForm
         name="entries"
         label="Show entries by"
         options={entriesArray}
