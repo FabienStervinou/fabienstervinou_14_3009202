@@ -54,8 +54,13 @@ function Form () {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Box>
-        <Stack spacing={2}>
+      <Box
+        sx={{ width: '100%', margin: '20px 0' }}
+      >
+        <Stack
+          spacing={2}
+          sx={{ margin: '20px' }}
+        >
           <TextField
             id="firstName"
             label="First Name"
@@ -76,7 +81,9 @@ function Form () {
               mask='__/__/____'
               value={dateOfBirth}
               onChange={(newValue) => {
-                setDateOfBirth(newValue.format('DD/MM/YYYY'));
+                if(newValue !== null) {
+                  setDateOfBirth(newValue.format('DD/MM/YYYY'));
+                }
               }}
               renderInput={(params) => <TextField {...params} />}
             />
@@ -86,7 +93,9 @@ function Form () {
               mask='__/__/____'
               value={startDate}
               onChange={(newValue) => {
-                setStartDate(newValue.format('DD/MM/YYYY'));
+                if(newValue !== null) {
+                  setStartDate(newValue.format('DD/MM/YYYY'));
+                }
               }}
               renderInput={(params) => <TextField fullWidth {...params} />}
             />
@@ -94,14 +103,14 @@ function Form () {
         </Stack>
         <Fieldset legend="Adresse">
           <TextField
-            sx= {{ m:1 }}
+            sx= {{ m:1, width: '100%' }}
             id="street"
             label="Street"
             value={street}
             onChange={(newValue) => {setStreet(newValue.target.value);}}
           />
           <TextField
-            sx= {{ m:1 }}
+            sx= {{ m:1, width: '100%' }}
             id="city"
             label="City"
             value={city}
@@ -116,6 +125,7 @@ function Form () {
             onChange={(newValue) => setStateLocation(newValue.target.value)} 
           />
           <TextField
+            sx= {{ m:1, width: '100%' }}
             id="zipCode"
             label="Zip Code"
             type="number"
@@ -126,7 +136,12 @@ function Form () {
             }}
           />
         </Fieldset>
-        <SelectForm options={data.department} name="Department" label="Department" id="department" value={department} onChange={(e) => setDepartment(e.target.value) } />
+        <Stack
+          spacing={2}
+          sx={{ margin: '20px 20px 0' }}
+        >
+          <SelectForm options={data.department} name="Department" label="Department" id="department" value={department} onChange={(e) => setDepartment(e.target.value) } />
+        </Stack>
         <input type="submit" value="Save"/>
       </Box>
     </form>
