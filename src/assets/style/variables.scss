@@ -4,3 +4,13 @@ $text-primary: rgb(28, 95, 24);
 $background-primary: rgb(53, 174, 45, .2);
 $background-form: rgb(236, 251, 222);
 $background-form-2: rgb(219, 252, 187);
+
+/*
+** BREAKPOINTS
+*/ 
+$bp-xs: 0;
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 992px;
+$bp-xl: 1200px;
+$bp-xxl: 1400px;
