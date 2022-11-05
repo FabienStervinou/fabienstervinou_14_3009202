@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 function  Fieldset (props) {
   return (
-    <fieldset>
-      <legend>{props.legend}</legend>
+    <fieldset className="fieldset">
+      <legend className="fieldsetLegend">{props.legend}</legend>
       { props.children }
     </fieldset>
   );

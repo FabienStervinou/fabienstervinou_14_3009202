@@ -1,20 +1,29 @@
 @import '../../../assets/style/variables.scss';
 
-fieldset {
+.fieldset {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
   margin: 50px 0 30px;
-  width: 100%;
   border: 2px solid $primary-color;
-  border-radius: 100px;
+  border-radius: 50px;
+  width: calc(100% - 4px);
+  margin: 2px;
   padding: 60px;
 
-  legend {
+  &Legend {
     position: absolute;
     top: 30px;
     font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .fieldset {
+    margin: 20px 0 0;
+    width: 100%;
+    border-radius: 100px;
   }
 }
