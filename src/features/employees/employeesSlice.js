@@ -24,9 +24,9 @@ const employeesSlice = createSlice({
         const response = state.employees.filter(value => {
           return value.firstName.toLowerCase().match(new RegExp(q, 'g')) ||
           value.lastName.toLowerCase().match(new RegExp(q, 'g')) ||
-          value.startDate.toLowerCase().match(new RegExp(q, 'g')) ||
+          value.startDate?.toLowerCase().match(new RegExp(q, 'g')) ||
           value.department.toLowerCase().match(new RegExp(q, 'g')) ||
-          value.dateOfBirth.toLowerCase().match(new RegExp(q, 'g')) ||
+          value.dateOfBirth?.toLowerCase().match(new RegExp(q, 'g')) ||
           value.street.toLowerCase().match(new RegExp(q, 'g')) ||
           value.city.toLowerCase().match(new RegExp(q, 'g')) ||
           value.stateLocation.toLowerCase().match(new RegExp(q, 'g'));
@@ -42,9 +42,9 @@ const employeesSlice = createSlice({
           const response = stateQuery.filter(value => {
             return value.firstName.toLowerCase().match(new RegExp(qElement, 'g')) ||
             value.lastName.toLowerCase().match(new RegExp(qElement, 'g')) ||
-            value.startDate.toLowerCase().match(new RegExp(qElement, 'g')) ||
+            value.startDate?.toLowerCase().match(new RegExp(q, 'g')) ||
             value.department.toLowerCase().match(new RegExp(qElement, 'g')) ||
-            value.dateOfBirth.toLowerCase().match(new RegExp(qElement, 'g')) ||
+            value.dateOfBirth?.toLowerCase().match(new RegExp(q, 'g')) ||
             value.street.toLowerCase().match(new RegExp(qElement, 'g')) ||
             value.city.toLowerCase().match(new RegExp(qElement, 'g')) ||
             value.stateLocation.toLowerCase().match(new RegExp(qElement, 'g'));
