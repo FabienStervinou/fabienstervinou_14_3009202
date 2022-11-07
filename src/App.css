@@ -1,6 +1,12 @@
 .App {
-  margin: 0;
+  padding: 0;
   text-align: -webkit-center;
+}
+
+.title {
+  font-size: 42px;
+  color: #075c07;
+  margin-bottom: 30px;
 }
 
 @media only screen and (min-width: 576px) {
