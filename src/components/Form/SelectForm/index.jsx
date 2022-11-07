@@ -9,7 +9,7 @@ import './index.scss';
 function SelectForm (props) {
   return ( 
     <FormControl 
-      sx={{ m: 1, minWidth: 140, width: '100%' }}
+      sx={ props.sx || { m: 1, minWidth: 140, width: '100%' }}
     >
       <InputLabel id="demo-simple-select-autowidth-label">{props.label}</InputLabel>
       <Select
@@ -44,4 +44,5 @@ SelectForm.propTypes = {
   onChange: PropTypes.func,
   default: PropTypes.any,
   value: PropTypes.any,
+  sx: PropTypes.any,
 };

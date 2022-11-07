@@ -16,7 +16,7 @@ function Header () {
       {
         isActualLocationHome 
           ? <NavLink className='headerLink' to='/employees'>
-            View Current Employees
+            Employees
           </NavLink>
           : <NavLink className='headerLink' to='/'>
             Home

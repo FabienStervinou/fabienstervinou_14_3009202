@@ -20,8 +20,9 @@ function Entries () {
   return (
     <div className='inputEntries'>
       <SelectForm
+        sx={{ minWidth: '100px' }}
         name="entries"
-        label="Show entries by"
+        label="Show by"
         options={entriesArray}
         onChange={handleChange} 
         value={entries}

@@ -7,7 +7,7 @@ function Home () {
     <>
       <Header />
       <main className="home">
-        <h2>Create employee</h2>
+        <h2 className='title'>Create employee</h2>
         <Form />
       </main>
     </>

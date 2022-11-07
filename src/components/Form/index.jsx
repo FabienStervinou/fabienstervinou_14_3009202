@@ -140,7 +140,7 @@ function Form () {
           spacing={2}
           sx={{ margin: '20px 20px 0' }}
         >
-          <SelectForm options={data.department} name="Department" label="Department" id="department" value={department} onChange={(e) => setDepartment(e.target.value) } />
+          <SelectForm options={data.department} name="Department" label="Department" id="department" value={department} onChange={(e) => setDepartment(e.target.value)} sx={{minWidth: 140, width: '100%'}} />
         </Stack>
         <input type="submit" value="Save"/>
       </Box>
