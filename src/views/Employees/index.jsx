@@ -6,6 +6,7 @@ import Entries from '../../components/Entries/index';
 import { getEmployeesByQuery, orderEmployeeByColumn } from '../../features/employees/employeesSlice';
 import Pagination from '../../components/Pagination';
 import { Arrow } from '../../assets/svgs/arrow.jsx';
+import TextField from '@mui/material/TextField';
 
 function Employees () {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function Employees () {
     setSearchTerm(query);
     if (query.length >= 1) {
       const queryRequest = query.trim();
-      
+      setCurrentPage(1);
       dispatch(getEmployeesByQuery(queryRequest));
     }
   };
@@ -67,24 +68,19 @@ function Employees () {
   return ( 
     <>
       <Header />
+      <h2 className='title'>Current employees</h2>
       <main className="employees">
 
         <div className="employees-topTools">
           <Entries />
-          <div className='inputSearch'>
-            <label className='inputSearch-text' htmlFor='search'>Search :</label>
-            <input
-              id="search"
-              className='inputSearch-button'
-              type="search"
-              value={searchTerm}
-              onChange={handleChange}
-            />
-          </div>
+          <TextField
+            id="search"
+            label="Search"
+            type="search"
+            value={searchTerm}
+            onChange={handleChange}
+          />
         </div>
-
-        {/* TODO: remove only for debug */}
-        <p style={{color: 'white', backgroundColor:'#31c17c', padding: '10px', fontWeight:'700', fontSize:'20px'}}>{employees.length} employés</p>
 
         <table>
           <tbody>
