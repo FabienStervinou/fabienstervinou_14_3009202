@@ -104,7 +104,7 @@ function Form () {
               mask='__/__/____'
               value={dateOfBirth}
               onChange={(newValue) => {
-                if(newValue !== null) {
+                if (newValue !== null) {
                   setDateOfBirth(newValue.format('DD/MM/YYYY'));
                 }
               }}
@@ -116,7 +116,7 @@ function Form () {
               mask='__/__/____'
               value={startDate}
               onChange={(newValue) => {
-                if(newValue !== null) {
+                if (newValue !== null) {
                   setStartDate(newValue.format('DD/MM/YYYY'));
                 }
               }}
@@ -163,7 +163,13 @@ function Form () {
           spacing={2}
           sx={{ margin: '20px 20px 0' }}
         >
-          <SelectForm options={data.department} name="Department" label="Department" id="department" value={department} onChange={(e) => setDepartment(e.target.value)} sx={{minWidth: 140, width: '100%'}} />
+          <SelectForm 
+            options={data.department} 
+            name="Department" 
+            label="Department" 
+            id="department" 
+            value={department} 
+            onChange={(e) => setDepartment(e.target.value)} sx={{minWidth: 140, width: '100%'}} />
         </Stack>
         <input type="submit" value="Save"/>
       </Box>

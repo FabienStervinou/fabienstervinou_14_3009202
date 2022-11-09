@@ -16,7 +16,7 @@ const employeesSlice = createSlice({
     },
     getEmployeesByQuery: (state, action) => {
       const q = action.payload.toLowerCase();
-      if (q.length <= 1) { state.employeesQuery = state.employees; return;}
+      if (q.length <= 1) { state.employeesQuery = state.employees;}
       const userPressDeleteKey = q.length < state.query.length;
       state.query = q;
 
@@ -56,23 +56,17 @@ const employeesSlice = createSlice({
           return new Set(array).size !== array.length;
         }; 
 
-        // TODO: Remove only for test 
-        let i = 0;
         let filteredArr = [...res];
         while (hasDuplicates(filteredArr) == true) {
           const seen = new Set();
-          i++;
+
           let filterRes = filteredArr.filter((el) => {
             const duplicate = seen.has(el.id);
             seen.add(el.id);
             return duplicate;
           });
-          filteredArr = filterRes;
 
-          // TODO: Remove only for test 
-          if (i === 10) {
-            break;
-          }
+          filteredArr = filterRes;
         }
 
         state.employeesQuery = filteredArr;
