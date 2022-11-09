@@ -39,6 +39,11 @@ const Pagination = props => {
     <ul
       className={classnames('pagination-container', { [className]: className })}
     >
+      <li className="pagination-info">
+        {(pageSize * currentPage) - 9} - 
+        {(pageSize * currentPage) > totalCount ? totalCount : pageSize * currentPage}
+        of {totalCount}
+      </li>
       {/* Left navigation arrow */}
       <li
         className={classnames('pagination-item', {
