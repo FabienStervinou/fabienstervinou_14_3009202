@@ -4,11 +4,11 @@ form {
   border-radius: 50px;
   margin: 50px 0;
   background-color: $background-form;
-  padding: 2em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 570px;
 
   input[type="submit"] {
     text-decoration: none;
@@ -22,8 +22,9 @@ form {
   }
 }
 
-@media only screen and (min-width: 450px) {
+@media only screen and (min-width: 576px) {
   form {
+    padding: 20px;
     border-radius: 100px;
   }
 }
