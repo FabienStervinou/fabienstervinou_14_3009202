@@ -1,10 +1,11 @@
 import './index.scss';
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import Fieldset from './ Fieldset/index.jsx';
 import SelectForm from './SelectForm/index.jsx';
 import { data } from '../../utils/data.js';
 import { useDispatch } from 'react-redux';
 import { addEmployee } from '../../features/employees/employeesSlice.js';
+import { Modal } from '@fster/react-modal';
 // MUI imports
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -15,7 +16,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 function Form () {
   const dispatch = useDispatch();
-
+  // FORM
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState(null);
@@ -25,41 +26,48 @@ function Form () {
   const [stateLocation, setStateLocation] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [department, setDepartment] = useState('');
+  // MODAL
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const employee = {firstName, lastName, dateOfBirth, startDate, street, city, stateLocation, zipCode, department};
-    dispatch(addEmployee(employee));
 
-    //TODO: verify if the employee is corectly added
-    resetForm();
+    try {
+      dispatch(addEmployee(employee));
+      resetForm();
+      setIsModalVisible(true);
+      return true;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const resetForm = () => {
-    const allInput = document.querySelectorAll('input');
-    const allSelect = document.querySelectorAll('select');
-
-    for (let i = 0; i < allInput.length; i++) {
-      const input = allInput[i];
-      if (input.type !== 'submit') {
-        input.value = '';
-      }
-    }
-
-    for (let i = 0; i < allSelect.length; i++) {
-      const select = allSelect[i];
-      select.selectedIndex = null;
-    }
+    setFirstName('');
+    setLastName('');
+    setDateOfBirth(null);
+    setStartDate(null);
+    setStreet('');
+    setCity('');
+    setStateLocation('');
+    setZipCode('');
+    setDepartment('');
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <Modal 
+        title="You have succesfuly register an employee !"
+        text="You can view all the amployees added on the mployees page, accessible by the employee button on top of this page"
+        isVisible={isModalVisible}
+      />
       <Box
         sx={{ width: '100%', margin: '20px 0' }}
       >
         <Stack
           spacing={2}
-          sx={{ margin: '20px' }}
+          sx={{ margin: '20px'}}
         >
           <TextField
             id="firstName"
