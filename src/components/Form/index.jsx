@@ -1,5 +1,5 @@
 import './index.scss';
-import React, {useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Fieldset from './ Fieldset/index.jsx';
 import SelectForm from './SelectForm/index.jsx';
 import { data } from '../../utils/data.js';
@@ -54,6 +54,21 @@ function Form () {
     setZipCode('');
     setDepartment('');
   };
+
+  useEffect(() => {
+    const handleKeyPressEscape = (e) => { e.keyCode == 27 ? setIsModalVisible(false) : null;};
+    const handleClickModalBkg = (e) => { e.target.classList.contains('isVisible') ? e.target.classList.remove('isVisible') : null;};
+
+    if (isModalVisible == true) {
+      window.addEventListener('keydown', handleKeyPressEscape);
+      document.querySelector('.modal').addEventListener('click', handleClickModalBkg);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPressEscape);
+      window.removeEventListener('click', handleClickModalBkg);
+    };
+  }, [isModalVisible]);
 
   return (
     <form onSubmit={handleSubmit}>
