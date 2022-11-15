@@ -11,10 +11,10 @@ function SelectForm (props) {
     <FormControl 
       sx={ props.sx || { m: 1, minWidth: 140, width: '100%' }}
     >
-      <InputLabel id="demo-simple-select-autowidth-label">{props.label}</InputLabel>
+      <InputLabel id={`demo-simple-select-autowidth-label ${props.label}_${Math.random()}`}>{props.label}</InputLabel>
       <Select
-        labelId="demo-simple-select-autowidth-label"
-        id="'select-' + props.name"
+        labelId={`demo-simple-select-autowidth-label ${props.label}`}
+        id={`select- ${props.name}`}
         value={props.value}
         onChange={props.onChange}
         autoWidth
