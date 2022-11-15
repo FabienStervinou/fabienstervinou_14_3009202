@@ -37,7 +37,6 @@ function Form () {
       dispatch(addEmployee(employee));
       resetForm();
       setIsModalVisible(true);
-      return true;
     } catch (error) {
       console.error(error);
     }
@@ -57,7 +56,7 @@ function Form () {
 
   useEffect(() => {
     const handleKeyPressEscape = (e) => { e.keyCode == 27 ? setIsModalVisible(false) : null;};
-    const handleClickModalBkg = (e) => { e.target.classList.contains('isVisible') ? e.target.classList.remove('isVisible') : null;};
+    const handleClickModalBkg = (e) => { e.target.classList.contains('isVisible') ? setIsModalVisible(false) : null;};
 
     if (isModalVisible == true) {
       window.addEventListener('keydown', handleKeyPressEscape);
@@ -76,6 +75,7 @@ function Form () {
         title="You have succesfuly register an employee !"
         text="You can view all the amployees added on the mployees page, accessible by the employee button on top of this page"
         isVisible={isModalVisible}
+        hide={() => setIsModalVisible(false)}
       />
       <Box
         sx={{ width: '100%', margin: '20px 0' }}
