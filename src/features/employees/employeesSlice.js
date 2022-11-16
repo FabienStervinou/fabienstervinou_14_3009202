@@ -80,17 +80,9 @@ const employeesSlice = createSlice({
 
       if (orderName === 'startDate' || orderName === 'dateOfBirth') {
         if (order === 'asc') {
-          response = [...state.employeesQuery].sort((a,b) => {
-            let aa = a[orderName].split('/').reverse().join();
-            let bb = b[orderName].split('/').reverse().join();
-            return aa < bb ? -1 : (aa > bb ? 1 : 0);
-          });
+          response = [...state.employeesQuery].sort((a,b) => new Date(b[orderName]) - new Date(a[orderName]));
         } else if (order === 'desc') {
-          response = [...state.employeesQuery].sort((a,b) => {
-            let aa = a[orderName].split('/').reverse().join();
-            let bb = b[orderName].split('/').reverse().join();
-            return aa > bb ? -1 : (aa < bb ? 1 : 0);
-          });
+          response = [...state.employeesQuery].sort((a,b) => new Date(a[orderName]) - new Date(b[orderName]));
         }
       } else {
         if (order === 'asc') {
