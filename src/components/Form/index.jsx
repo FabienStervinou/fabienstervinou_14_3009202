@@ -100,24 +100,24 @@ function Form () {
             <DesktopDatePicker
               error={true}
               label="Date of Birth"
-              inputFormat="DD/MM/YYYY"
+              inputFormat="MM/DD/YYYY"
               mask='__/__/____'
               value={dateOfBirth}
               onChange={(newValue) => {
                 if (newValue !== null) {
-                  setDateOfBirth(newValue.format('DD/MM/YYYY'));
+                  setDateOfBirth(newValue.format('MM/DD/YYYY'));
                 }
               }}
               renderInput={(params) => <TextField {...params} />}
             />
             <DesktopDatePicker
               label="Start Date"
-              inputFormat="DD/MM/YYYY"
+              inputFormat="MM/DD/YYYY"
               mask='__/__/____'
               value={startDate}
               onChange={(newValue) => {
                 if (newValue !== null) {
-                  setStartDate(newValue.format('DD/MM/YYYY'));
+                  setStartDate(newValue.format('MM/DD/YYYY'));
                 }
               }}
               renderInput={(params) => <TextField fullWidth {...params} />}
