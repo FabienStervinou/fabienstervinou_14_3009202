@@ -36,52 +36,54 @@ const Pagination = props => {
 
   let lastPage = paginationRange[paginationRange.length - 1];
   return (
-    <ul
-      className={classnames('pagination-container', { [className]: className })}
-    >
-      <li className="pagination-info">
+    <div className='pagination'>
+      <div className="pagination-info">
         {(pageSize * currentPage) - 9} - 
-        {(pageSize * currentPage) > totalCount ? totalCount : pageSize * currentPage}
-        of {totalCount}
-      </li>
-      {/* Left navigation arrow */}
-      <li
-        className={classnames('pagination-item', {
-          disabled: currentPage === 1
-        })}
-        onClick={onPrevious}
+        {((pageSize * currentPage) > totalCount ? totalCount : pageSize * currentPage) + ' '}
+      of {totalCount}
+      </div>
+      <ul
+        className={classnames('pagination-container', { [className]: className })}
       >
-        <div className="arrow left" />
-      </li>
-      {paginationRange.map((pageNumber, idx) => {
+        {/* Left navigation arrow */}
+        <li
+          className={classnames('pagination-item', {
+            disabled: currentPage === 1
+          })}
+          onClick={onPrevious}
+        >
+          <div className="arrow left" />
+        </li>
+        {paginationRange.map((pageNumber, idx) => {
         // If the pageItem is a DOT, render the DOTS unicode character
-        if (pageNumber === DOTS) {
-          return <li className="pagination-item dots" key={idx}>&#8230;</li>;
-        }
+          if (pageNumber === DOTS) {
+            return <li className="pagination-item dots" key={idx}>&#8230;</li>;
+          }
 
-        // Render our Page Pills
-        return (
-          <li
-            className={classnames('pagination-item', {
-              selected: pageNumber === currentPage
-            })}
-            onClick={() => onPageChange(pageNumber)}
-            key={idx}
-          >
-            {pageNumber}
-          </li>
-        );
-      })}
-      {/*  Right Navigation arrow */}
-      <li
-        className={classnames('pagination-item', {
-          disabled: currentPage === lastPage
+          // Render our Page Pills
+          return (
+            <li
+              className={classnames('pagination-item', {
+                selected: pageNumber === currentPage
+              })}
+              onClick={() => onPageChange(pageNumber)}
+              key={idx}
+            >
+              {pageNumber}
+            </li>
+          );
         })}
-        onClick={onNext}
-      >
-        <div className="arrow right" />
-      </li>
-    </ul>
+        {/*  Right Navigation arrow */}
+        <li
+          className={classnames('pagination-item', {
+            disabled: currentPage === lastPage
+          })}
+          onClick={onNext}
+        >
+          <div className="arrow right" />
+        </li>
+      </ul>
+    </div>
   );
 };
 
