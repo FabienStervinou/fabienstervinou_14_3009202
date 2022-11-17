@@ -1,4 +1,6 @@
 .employees {
+  max-width: 1100px;
+
   &-topTools {
     display: flex;
     justify-content: space-between;
@@ -13,7 +15,6 @@ table {
   overflow-y: hidden;
   white-space: nowrap;
   display: flex;
-  justify-content: center;
   margin-bottom: 20px;
 
   tbody {
